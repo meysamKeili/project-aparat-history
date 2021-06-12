@@ -1,2 +1,0 @@
-# only ignore the node_modules file in the current directory, not subdir/node_modules
-/node_modules
