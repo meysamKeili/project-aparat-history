@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: IRANSansWeb;
+  font-style: normal;
+  font-weight: 400;
+  src: url(/assets/fonts/iransans/IRANSansWeb.eot?#iefix) format("embedded-opentype"), url(/assets/fonts/iransans/IRANSansWeb.woff2) format("woff2"), url(/assets/fonts/iransans/IRANSansWeb.woff) format("woff"), url(/assets/fonts/iransans/IRANSansWeb.ttf) format("truetype")
+}
+
+a, body, button, div, h1, h2, h3, h4, h5, h6, input, label, legend, p, span, strong, table {
+  font-family: IRANSansWeb !important;
+  text-decoration: none
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.input-form {
+  padding-right: 2rem;
+}
+
+.table-wrap {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 0.4rem #ddd;
+  width: 100%;
+  overflow-x: auto;
+
+  .table th {
+    color: rgba(45, 82, 124, 1);
+    border-bottom: 1px solid rgba(45, 82, 124, 1);
+    border-top: unset;
+    text-align: right;
+  }
+
+  .table td {
+    color: rgb(59, 72, 77);
+    font-size: 14px;
+    text-align: right;
+    vertical-align: middle;
+  }
+
+}
+
+.modal-detail {
+  border-radius: 15px !important;
+  background: #f7f7f7 !important;
+  color: #494949;
+}
+
+.section-info-field {
+  padding: 0.5rem;
+  background: #ebebeb;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  color: #494949;
+  text-align: right;
+}
+
+.section-one-landing{
+  background: #dddddd;
+  border-radius: 30px;
+  padding: 2rem;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

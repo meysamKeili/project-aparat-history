@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade text-right" id="detailVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true" >
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content modal-detail">
+            <div class="modal-header" style="border: 0">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+<div class="row text-center">
+    <div class="col-6">
+            <section class="section-info-field">
+                <p class="text-info">عنوان ویدئو:</p>
+                {{videoDetail.title}}
+            </section>
+            <section class="section-info-field">
+                <label class="text-info">مدت زمان ویدئو:</label>
+                {{videoDetail.duration | convertTime}}
+            </section>
+            <section class="section-info-field">
+                <label class="text-info">آپلود شده توسط:</label>
+                {{videoDetail.sender_name}}
+            </section>
+            <section class="section-info-field">
+                <label class="text-info">زمان ایجاد:</label>
+                {{videoDetail.sdate}}
+            </section>
+            <section class="section-info-field">
+                <label class="text-info">تعداد بازدید:</label>
+                {{videoDetail.visit_cnt}}
+            </section>
+    </div>
+    <div class="col-6">
+        <img [src]="videoDetail.big_poster" style="width: 80%;border-radius: 12px">
+        <button mat-raised-button color="primary" class="m-3" (click)="routeFreamOnNewTab()">نمایش ویدئو </button>
+<!--        <button type="button" class="btn btn-outline-success  m-3" (click)="routeFreamOnNewTab()">نمایش ویدئو در تب جدید</button>-->
+    </div>
+</div>
+                </div>
+
+
+            </div>
+            <!--            <div class="modal-footer">-->
+            <!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+            <!--                <button type="button" class="btn btn-primary">Save changes</button>-->
+            <!--            </div>-->
+        </div>
+    </div>
+

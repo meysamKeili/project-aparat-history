@@ -1,0 +1,159 @@
+
+    <div class="section-one-landing">
+
+    <div class="text-center" style="margin-bottom: 5rem" >
+        <img src="../../../../../assets/image/72331.png" [width]="120">
+        <h2>Aparat History</h2>
+        <div class="row">
+            <div class="col-3 text-left">
+                <button mat-raised-button color
+                        [color]="typeOfSearch===Type.User ? 'warn' :'' ||
+                         typeOfSearch===Type.Category ? 'primary' :'' ||
+                         typeOfSearch===Type.Term ? 'accent' :''"
+                        [matMenuTriggerFor]="menu">
+                    <ng-container *ngIf="typeOfSearch==Type.Category">
+                        <mat-icon>group_work</mat-icon>
+                        جستجو بر اساس موضوع
+                    </ng-container>
+                    <ng-container *ngIf="typeOfSearch==Type.Term">
+                        <mat-icon>short_text</mat-icon>
+                        جستجو بر اساس متن ویدئو
+                    </ng-container>
+                    <mat-icon>arrow_drop_down</mat-icon>
+                    <ng-container *ngIf="typeOfSearch==Type.User">
+                        <mat-icon>account_circle</mat-icon>
+                        جستجو بر اساس کاربر
+                    </ng-container>
+                </button>
+
+
+                <mat-menu #menu="matMenu">
+                    <div class="list-group" id="list-tab" role="tablist">
+                        <button mat-menu-item id="list-category-list" data-toggle="list"
+                                (click)="typeOfSearch=Type.Category"
+                                href="#list-category" role="tab" aria-controls="category">
+                            <mat-icon>group_work</mat-icon>
+                            جستجو بر اساس موضوع
+                        </button>
+                        <button mat-menu-item id="list-term-list" data-toggle="list" (click)="typeOfSearch=Type.Term"
+                                href="#list-term" role="tab" aria-controls="category">
+                            <mat-icon>short_text</mat-icon>
+                            جستجو بر اساس متن ویدئو
+                        </button>
+                        <button mat-menu-item id="list-user-list" data-toggle="list" (click)="typeOfSearch=Type.User"
+                                href="#list-user" role="tab" aria-controls="user">
+                            <mat-icon>account_circle</mat-icon>
+                            جستجو بر اساس کاربر
+                        </button>
+                    </div>
+                </mat-menu>
+            </div>
+
+
+            <div class="col-8">
+                <form [formGroup]="formSearchLanding" (ngSubmit)="getPage()">
+                <div class="tab-content " id="nav-tabContent">
+
+                    <div class="tab-pane fade show active" id="list-category" role="tabpanel" aria-labelledby="list-category-list">
+                        <!--  جستجو بر اساس موضوع ویدئو-->
+                        <div class="input-group mb-3" dir="ltr">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="submit"><i
+                                        class="fa fa-search"></i></button>
+                            </div>
+                            <select class="form-control" aria-label="" aria-describedby="basic-addon1"
+                                    formControlName="selectCategory" dir="rtl" id="selectCategory">
+                                <option *ngFor="let item of categoryList" [value]="item.id">{{item.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade " id="list-term" role="tabpanel" aria-labelledby="list-term-list">
+                        <!-- جستجو بر اساس متن ویدئو-->
+                        <div class="input-group mb-3" dir="ltr">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="submit"><i
+                                        class="fa fa-search"></i></button>
+                            </div>
+                            <input type="text" class="form-control" placeholder=""
+                                   formControlName="inputTerm" id="inputTerm"
+                                   aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade " id="list-user" role="tabpanel"
+                         aria-labelledby="list-user-list">
+                        <!-- جستجو بر اساس کاربر-->
+                        <div class="input-group mb-3" dir="ltr">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="submit"><i
+                                        class="fa fa-search"></i></button>
+                            </div>
+                            <input type="text" class="form-control" placeholder=""
+                                   formControlName="inputUserName" id="inputUserName"
+                                   aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+
+                </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+    <div style="padding-right: 2rem;padding-left: 2rem;margin-top: -6rem">
+        <div class="table-wrap">
+                <div class="spinner-grow pull-right"
+                     *ngIf="loading"
+                     role="status" style="margin: 0.5rem">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <ng-container [ngTemplateOutlet]="paginator"></ng-container>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>عنوان</th>
+                    <th>تاریخ ایجاد</th>
+                    <th>کاربر</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let todo of todoList">
+                    <tr data-toggle="modal" data-target="#detailVideo"
+                        class="cursor-pointer" (click)="selectedTodo=todo">
+                        <td>
+                            <img [src]="todo.small_poster" style="border-radius: 14px;width: 80px;height: 60px">
+                            {{todo.title}}
+                        </td>
+                        <td>
+                            {{todo.sdate}}
+                        </td>
+                        <td>
+                            {{todo.username}}
+                            <p>
+                                <small>({{todo.sender_name}})</small>
+                            </p>
+                        </td>
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table>
+            <ng-container [ngTemplateOutlet]="paginator"></ng-container>
+        </div>
+    </div>
+
+
+    <ng-template #paginator>
+        <app-paginator dir="rtl"
+                       [totalElements]="length"
+                       [pageSize]="pageSize"
+                       [pageIndex]="pageIndex"
+                       [pageSizeOptions]="[10,20,40,80,200]"
+                       [showFirstLastButtons]="true"
+                       (page)=" navigate($event)"
+        ></app-paginator>
+    </ng-template>
+<app-detail-video [videoDetail]="selectedTodo"></app-detail-video>
+
